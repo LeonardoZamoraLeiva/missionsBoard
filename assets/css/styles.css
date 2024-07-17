@@ -15,9 +15,10 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .association img {
-    width: 30%;
+    width: 20%;
     height: 5%;
     border-radius: 4px;
+    padding-right: 15px;
 }
 .association h2 {
     font-size: 1.5em;
@@ -41,9 +42,10 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .mission-card img {
-    max-width: 20%;
-    height: 20%;
+    max-width: 80%;
+    height: 80%;
     border-radius: 4px;
+    /* padding-right: 10px; */
 }
 .mission-card h3 {
     font-size: 1.2em;
