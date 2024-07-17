@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.association {
+    display: inline-table;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    width: 30%;
+    height:20% ;
+     /*Responsive: 4 cards per line */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.association img {
+    width: 30%;
+    height: 5%;
+    border-radius: 4px;
+}
+.association h2 {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+.association p {
+    margin: 0.5em 0;
+}
+.missions-container {
+    display: flex;
+    flex-wrap: wrap;
+    display: none; /* Hidden by default */
+    justify-content: center;
+}
+.mission-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    max-width: 18rem; /* Responsive: 4 cards per line */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.mission-card img {
+    max-width: 20%;
+    height: 20%;
+    border-radius: 4px;
+}
+.mission-card h3 {
+    font-size: 1.2em;
+    margin: 0.5em 0;
+}
+.mission-card p {
+    margin: 0.5em 0;
+}
