@@ -207,7 +207,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   associations.forEach((association) => {
       const associationElement = document.createElement("div");
+      associationElement.classList.add("association1");
       associationElement.classList.add("association");
+      associationElement.setAttribute("id",association.name);
 
       const imgElement = document.createElement("img");
       imgElement.src = association.imageUrl;
@@ -279,32 +281,37 @@ document.addEventListener("DOMContentLoaded", function() {
       associationsContainer.appendChild(associationElement);
 
 // Obtener el ancho original del elemento antes de aplicar cambios
-const originalWidth = associationElement.style.width || getComputedStyle(associationElement).width;
+    const originalWidth = associationElement.style.width || getComputedStyle(associationElement).width;
 
-associationElement.addEventListener("click", () => {
-    const isVisible = missionsContainer.style.display === "flex";
-    missionsContainer.style.display = isVisible ? "none" : "flex";
 
-    // Cambiar el ancho del div al hacer clic
-    if (isVisible) {
-        associationElement.style.width = originalWidth;
-    } else {
-        associationElement.style.width = "100%";
-    }
+    associationElement.addEventListener("click", () => {
+        const isVisible = missionsContainer.style.display === "flex";
+        missionsContainer.style.display = isVisible ? "none" : "flex";
 
-    // Ajustar el tamaño de la imagen dentro del div
-    const imageElement = associationElement.querySelector("img");
-    if (imageElement) {
+        // Cambiar el ancho del div al hacer clic
         if (isVisible) {
-            // Restaurar el tamaño original de la imagen al hacer clic nuevamente
-            imageElement.style.width = "30%"; // Ajusta aquí el tamaño original de la imagen
-            imageElement.style.height = "5%"; // Ajusta aquí el tamaño original de la imagen
+            associationElement.style.width = originalWidth;
         } else {
-            // Mantener el tamaño fijo o absoluto de la imagen mientras el div se expande
-            imageElement.style.width = "10%";
-            imageElement.style.height = "2%";
+            associationElement.style.width = "100%";
         }
-    }
-});
+
+        // Ajustar el tamaño de la imagen dentro del div
+        const imageElement = associationElement.querySelector("img");
+        if (imageElement) {
+            if (isVisible) {
+                // Restaurar el tamaño original de la imagen al hacer clic nuevamente
+                imageElement.style.width = "30%"; // Ajusta aquí el tamaño original de la imagen
+                imageElement.style.height = "5%"; // Ajusta aquí el tamaño original de la imagen
+            } else {
+                // Mantener el tamaño fijo o absoluto de la imagen mientras el div se expande
+                imageElement.style.width = "10%";
+                imageElement.style.height = "2%";
+            }
+        }
+            // Centrar la pantalla en el div al abrirlo o cerrarlo
+    associationElement.scrollIntoView({ behavior: "smooth", block: "start"});
+    });
+
+
   });
 });
