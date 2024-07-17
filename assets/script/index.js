@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function() {
   associations.forEach((association) => {
       const associationElement = document.createElement("div");
 
-      associationElement.classList.add("association", "col-md-3", "col-sm-4", 'col-xs-6');
+      associationElement.classList.add("association", "col-6", "col-md-3", "col-sm-4");
       associationElement.setAttribute("id",association.name);
 
       const imgElement = document.createElement("img");
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
           .filter((mission) => mission.association === association.name)
           .forEach((mission) => {
               const missionCard = document.createElement("div");
-              missionCard.classList.add("mission-card", "col-xs-10", "col-sm-8", "col-md-3","col-lg-2" );
+              missionCard.classList.add("mission-card", "col-10", "col-sm-5", "col-md-5","col-lg-3" );
               //missionCard.className = "mission-card";
               missionCard.style.justifyItems = "center";
 
@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Cambiar el ancho del div al hacer clic
         if (isVisible) {
             associationElement.style.width = originalWidth;
-            associationElement.classList.add("association", "col-md-3", "col-sm-4");
+            // associationElement.classList.add("association", "col-12","col-md-3", "col-sm-4");
         } else {
             associationElement.style.width = "100%";
             associationElement.classList = "association";
