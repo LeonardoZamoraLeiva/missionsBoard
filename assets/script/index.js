@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Merchant Syndicate
     {
-      description: "Transportar mercancías a un planeta del borde exterior",
+      description: "Transportar mercancías",
       association: "Merchant Syndicate",
       difficulty: "fácil",
       requirements: "Trained Survival",
@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
       image: "transport_goods.jpg",
     },
     {
-      description: "Asegurar un contrato con un cliente importante",
+      description: "Asegurar un contrato",
       association: "Merchant Syndicate",
       difficulty: "medio",
       requirements: "Trained Persuasion",
@@ -967,7 +967,7 @@ document.addEventListener("DOMContentLoaded", function () {
       image: "rescue_crews.jpg",
     },
     {
-      description: "Explorar sistemas en busca de chatarra espacial",
+      description: "Explorar sistemas en busca de chatarra",
       association: "Corellian Shipyards",
       difficulty: "Very difícil",
       requirements: "Trained Astrogation",
@@ -1207,7 +1207,7 @@ document.addEventListener("DOMContentLoaded", function () {
       image: "publish_article.jpg",
     },
     {
-      description: "Realizar un documental sobre una cultura alienígena",
+      description: "Documentar una cultura alienígena",
       association: "Galactic News Network",
       difficulty: "Very difícil",
       requirements: "Trained Filmmaking",
@@ -1336,190 +1336,142 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const associationsLogos = document.getElementById("associations-logos");
+  const missionsBoard = document.getElementById("missions-board");
+  const missionDetailsContainer = document.getElementById("mission-details");
+  const boardAssociation = document.getElementById("board-association");
+  let activeMissionButton = null; // Variable para guardar el botón activo
 
   associations.forEach((association) => {
     const logoContainer = document.createElement("div");
     logoContainer.classList.add("logo-container");
-  
+
     const imgElement = document.createElement("img");
     imgElement.src = association.imageUrl;
     imgElement.alt = `${association.name} Logo`;
     imgElement.classList.add("logo1");
     imgElement.setAttribute("title", association.name);
     imgElement.setAttribute("data-content", association.description);
-  
+
     const hoverInfo = document.createElement("div");
     hoverInfo.classList.add("hoverinfo");
-  
+
     const nameElement = document.createElement("h2");
     nameElement.textContent = association.name;
-  
-    // const descriptionElement = document.createElement("p");
-    // descriptionElement.textContent = association.description;
-  
+
     hoverInfo.appendChild(nameElement);
-    // hoverInfo.appendChild(descriptionElement);
     logoContainer.appendChild(imgElement);
     logoContainer.appendChild(hoverInfo);
-  
+
+    // Agregar evento de clic para mostrar misiones al hacer clic en el logo de la asociación
+    logoContainer.addEventListener("click", () => {
+      showMissionsForAssociation(association);
+    });
+
     associationsLogos.appendChild(logoContainer);
   });
-  
-  
-  
-const associationsContainer = document.getElementById(
-  "associations-container"
-);
 
-  associations.forEach((association) => {
-    const associationElement = document.createElement("div");
-    associationElement.classList.add(
-      "association",
-      "card",
-      "col-md-5",
-      "col-sm-12",
-      "col-lg-3"
-    );
-    associationElement.setAttribute("id", association.name);
-    associationElement.setAttribute("style", "width:100%");
+  function showMissionsForAssociation(association) {
+    // Limpiar contenido anterior
+    missionsBoard.innerHTML = "";
+    missionDetailsContainer.innerHTML = "";
+    boardAssociation.innerHTML = ""; // Limpiar contenido anterior del contenedor de la asociación
 
-    const imgContainer = document.createElement("div");
-    imgContainer.classList.add("col-5");
+    const boardAssociationName = document.createElement("h3");
+    const strongElement = document.createElement("strong");
+    strongElement.textContent = association.name;
+    boardAssociationName.appendChild(strongElement);
+    boardAssociationName.style.borderBottom = "1px solid black";
 
-    const imgElement = document.createElement("img");
-    imgElement.src = association.imageUrl;
-    imgElement.alt = `${association.name} Logo`;
-    imgElement.setAttribute("id", "logo");
-    imgElement.style.width = "auto"; // Espacio entre imagen y texto
-    imgElement.style.height = "100%"; // Espacio entre imagen y texto
-    imgElement.style.maxHeight = "4rem"; // Espacio entre imagen y texto
-    imgElement.style.minHeight = "4rem"; // Espacio entre imagen y texto
-    // imgElement.style.paddingRigh = "1em";
+    const boardAssociationDescription = document.createElement("div");
+    boardAssociationDescription.textContent = association.description;
+    boardAssociationDescription.style.paddingBottom = "1em";
 
-    const nameContainer = document.createElement("div");
-    nameContainer.classList.add("col-7", "text-end");
 
-    const nameElement = document.createElement("h2");
-    nameElement.textContent = association.name;
+    boardAssociation.appendChild(boardAssociationName);
+    boardAssociation.appendChild(boardAssociationDescription);
 
-    // Contenedor para imagen y h2
-    const headerContainer = document.createElement("div");
-    headerContainer.classList.add(
-      "row",
-      "card-header",
-      "justify-content-center"
-    );
-    // headerContainer.style.display = "flex";
-    // headerContainer.style.flexDirection = "row-reverse";
-    headerContainer.style.alignItems = "center"; // Centrar verticalmente
-    // headerContainer.style.borderBlock = "1px solid black";
-    // border-bottom: 1px solid black;
-    headerContainer.style.justifyContent = "center";
+    missions.forEach((mission) => {
+      if (mission.association === association.name) {
+        const missionButton = document.createElement("button");
+        missionButton.classList.add("mission", 'btn', 'btn-outline-dark');
+        missionButton.textContent = mission.description;
 
-    nameContainer.appendChild(nameElement);
-    imgContainer.appendChild(imgElement);
-
-    headerContainer.appendChild(imgContainer);
-    headerContainer.appendChild(nameContainer);
-    associationElement.appendChild(headerContainer);
-
-    const descriptionElement = document.createElement("p");
-    descriptionElement.textContent = association.description;
-    associationElement.appendChild(descriptionElement);
-
-    const alignmentElement = document.createElement("p");
-    alignmentElement.textContent = `Alineamiento: ${association.alignment}`;
-    associationElement.appendChild(alignmentElement);
-
-    const missionsContainer = document.createElement("div");
-    missionsContainer.classList.add("missions-container");
-
-    missions
-      .filter((mission) => mission.association === association.name)
-      .forEach((mission) => {
-        const missionCard = document.createElement("div");
-        missionCard.classList.add(
-          "mission-card",
-          "col-sm-12",
-          "col-md-5",
-          "col-lg-3",
-          // "",
-          // "border-dark",
-          "bgimg" // This class is no longer necessary if you apply the background image directly to the mission-card class
-        );
-        missionCard.setAttribute("style", "width:100%");
-        missionCard.style.justifyItems = "center";
-
-        // Contenedor para imagen y card-header
-        const cardHeaderContainer = document.createElement("div");
-        cardHeaderContainer.style.display = "flex";
-        cardHeaderContainer.style.flexDirection = "row";
-        cardHeaderContainer.style.alignItems = "center"; // Centrar verticalmente
-
-        const missionImage = document.createElement("img");
-        missionImage.src = mission.image;
-        missionImage.alt = mission.description;
-
-        const missionTitle = document.createElement("h3");
-        // missionTitle.classList.add("text-center");
-        missionTitle.textContent = mission.description;
-
-        // cardHeaderContainer.appendChild(missionTitle);
-        // cardHeaderContainer.appendChild(missionImage);
-        // missionCard.appendChild(cardHeaderContainer);
-
-        const missionDifficulty = document.createElement("p");
-        missionDifficulty.textContent = `Dificultad: ${mission.difficulty}`;
-
-        const missionTime = document.createElement("p");
-        missionTime.textContent = `Tiempo: ${mission.time}`;
-
-        const missionRequeriments = document.createElement("p");
-        missionRequeriments.textContent = `Requerimientos: ${mission.requirements}`;
-
-        const missionSuccessRate = document.createElement("p");
-        missionSuccessRate.textContent = `%éxito: ${mission.successRate}`;
-
-        const missionReward = document.createElement("p");
-        missionReward.textContent = `Recomensa: ${mission.reward}`;
-
-        const missionReputation = document.createElement("p");
-        missionReputation.textContent = `Reputación: ${mission.reputation}`;
-
-        missionCard.appendChild(missionTitle);
-        missionCard.appendChild(missionDifficulty);
-        missionCard.appendChild(missionRequeriments);
-        missionCard.appendChild(missionSuccessRate);
-        missionCard.appendChild(missionTime);
-        missionCard.appendChild(missionReward);
-        missionCard.appendChild(missionReputation);
-
-        missionsContainer.appendChild(missionCard);
-      });
-
-    associationElement.appendChild(missionsContainer);
-    associationsContainer.appendChild(associationElement);
-
-    // Obtener el ancho original del elemento antes de aplicar cambios
-    const originalWidth =
-      associationElement.style.width ||
-      getComputedStyle(associationElement).width;
-
-    associationElement.addEventListener("click", () => {
-      const isVisible = missionsContainer.style.display === "flex";
-      missionsContainer.style.display = isVisible ? "none" : "flex";
-
-      // Cambiar el ancho del div al hacer clic
-      if (isVisible) {
-        associationElement.style.width = originalWidth;
-        associationElement.className =
-          "association col-md-4 col-sm-12 col-lg-3";
-      } else {
-        associationElement.style.width = "100%";
-        associationElement.className = "association col-10";
+        missionButton.addEventListener("click", () => {
+          showMissionDetails(mission);
+          highlightMissionButton(missionButton);
+        });
+        missionsBoard.appendChild(missionButton);
       }
-      // Centrar la pantalla en el div al abrirlo o cerrarlo
-      associationElement.scrollIntoView({ behavior: "smooth", block: "start" });
     });
+  }
+
+  function showMissionDetails(mission) {
+    // Limpiar contenido anterior
+    missionDetailsContainer.innerHTML = "";
+
+    const missionDetailsInner = document.createElement("div");
+    missionDetailsInner.classList.add('mission-details-inner')
+
+    // Crear los elementos de la misión
+    const missionTitle = document.createElement("h3");
+    missionTitle.textContent = mission.description;
+    missionTitle.style.borderBottom = "1px solid black";
+
+    const missionDifficulty = document.createElement("p");
+    missionDifficulty.innerHTML = `<strong>Dificultad:</strong> ${mission.difficulty}`;
+
+    const missionRequirements = document.createElement("p");
+    missionRequirements.innerHTML = `<strong>Requisitos:</strong> ${mission.requirements}`;
+
+    const missionTime = document.createElement("p");
+    missionTime.innerHTML = `<strong>Tiempo:</strong> ${mission.time}`;
+
+    const missionReward = document.createElement("p");
+    missionReward.innerHTML = `<strong>Recompensa:</strong> ${mission.reward}`;
+
+    const missionReputation = document.createElement("p");
+    missionReputation.innerHTML = `<strong>Reputación:</strong> ${mission.reputation}`;
+
+    // const missionImage = document.createElement("img");
+    // missionImage.src = mission.image;
+    // missionImage.alt = "Mission Image";
+
+    // Agregar los elementos al contenedor
+    missionDetailsInner.appendChild(missionTitle);
+    missionDetailsInner.appendChild(missionDifficulty);
+    missionDetailsInner.appendChild(missionRequirements);
+    missionDetailsInner.appendChild(missionTime);
+    missionDetailsInner.appendChild(missionReward);
+    missionDetailsInner.appendChild(missionReputation);
+
+    missionDetailsContainer.appendChild(missionDetailsInner);
+  }
+
+  function highlightMissionButton(button) {
+    if (activeMissionButton) {
+      activeMissionButton.classList.remove("active");
+    }
+    button.classList.add("active");
+    activeMissionButton = button;
+  }
+
+  // Limpiar contenido al hacer clic en cualquier lugar fuera de logos de asociaciones y misiones
+  document.addEventListener("click", (event) => {
+    const clickedElement = event.target;
+
+    // Verificar si el clic no ocurrió dentro de los logos de asociaciones ni en las misiones
+    if (
+      !clickedElement.closest("#associations-logos") &&
+      !clickedElement.closest("#missions-board") &&
+      !clickedElement.closest("#mission-details")
+    ) {
+      missionsBoard.innerHTML = "";
+      missionDetailsContainer.innerHTML = "";
+      boardAssociation.innerHTML = "";
+      if (activeMissionButton) {
+        activeMissionButton.classList.remove("active");
+      }
+      activeMissionButton = null;
+    }
   });
 });
