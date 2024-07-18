@@ -329,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
       image: "capture.jpg",
     },
     {
-      description: "Eliminar a un cazarrecompensas rival",
+      description: "Eliminar a un caza recompensas rival",
       association: "Bounty Hunter Brotherhood",
       difficulty: "difícil",
       requirements: "Trained Stealth",
