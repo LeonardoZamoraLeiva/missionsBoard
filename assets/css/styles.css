@@ -1,56 +1,104 @@
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 .association {
-    display: inline-table;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    width: 30%;
-    height:20% ;
-     /*Responsive: 4 cards per line */
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: inline-table;
+  border: 0.1px solid #ccc;
+  border-radius: 8px;
+  /* padding: 16px; */
+  margin: 16px;
+  width: 30%;
+  height: 20%;
+  /*Responsive: 4 cards per line */
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .association img {
-    width: 20%;
-    height: 5%;
-    border-radius: 4px;
-    padding-right: 15px;
+  width: 20%;
+  height: 5%;
+  border-radius: 4px;
+  padding-right: 15px;
 }
 .association h2 {
-    font-size: 1.5em;
-    margin: 0.5em 0;
+  font-size: 1.2em;
+  margin: 0.2em 0;
+  font-weight: bold;
 }
 .association p {
-    margin: 0.5em 0;
+  margin: 0.5em 0;
 }
 .missions-container {
-    display: flex;
-    flex-wrap: wrap;
-    display: none; /* Hidden by default */
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  display: none; /* Hidden by default */
+  justify-content: space-around;
 }
+
 .mission-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    width: 20%; /* Responsive: 4 cards per line */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-image: url("../img/papelQuest1.png");
+  /* background-clip: border-box; */
+  /* backgroun */
+  background-size: 150%;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #000; /* Ensure text color is readable against the background */
+  color: #000; /* Ensure text color is readable against the background */
+  padding-top: 1%; /* Adjust padding to use the middle 70% */
+  /* padding-right: 15%; Adjust padding to use the middle 70% */
+  text-align: center; /* Center the text content, if needed */
+  /* margin: 5%; */
 }
-.mission-card img {
-    max-width: 80%;
-    height: 80%;
-    border-radius: 4px;
-    /* padding-right: 10px; */
+
+.mission-card {
+  /* border:; */
+  border-radius: 8px;
+  /* padding: 16px; */
+  margin: 5px;
+  width: 100%; /* Responsive: 4 cards per line */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); */
 }
+
 .mission-card h3 {
-    font-size: 1.2em;
-    margin: 0.5em 0;
+  font-size: 1.2em;
+  font-weight: bolder;
+  border-bottom: 0.5px solid #101010;
 }
+
 .mission-card p {
-    margin: 0.5em 0;
+  margin: 0.5em 0;
+  /* justify-content: ; */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 1200px) {
+  .mission-card {
+    background-size: 500%;
+    /* padding-top: 20%; Adjust padding to use the middle 76% on medium screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .mission-card {
+    background-size: 500%;
+    /* padding: 7% 10%; Adjust padding to use the middle 80% on small screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .mission-card {
+    background-size: 120%;
+    padding: 2% 8%;
+    /* Adjust padding to use the middle 84% on extra small screens */
+    /* background-size: contain; Adjust background size for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .mission-card {
+    background-size: 250%;
+    padding-top: 5%;
+    /* Adjust padding to use the middle 88% on very small screens */
+    /* background-size: contain; Adjust background size for very small screens */
+  }
 }
