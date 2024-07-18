@@ -102,3 +102,104 @@ body {
     /* background-size: contain; Adjust background size for very small screens */
   }
 }
+#associations-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Espacio entre las imágenes */
+  padding: 1rem; /* Añadir padding para evitar desbordes en pantallas pequeñas */
+}
+
+.logo1 {
+  mix-blend-mode: multiply;
+  width: auto;
+  max-height: 5rem;
+  transition: transform 0.2s, box-shadow 0.2s; /* Animación para el hover */
+  border-radius: 40px 40px 40px 40px;
+  -webkit-border-radius: 40px 40px 40px 40px;
+  -moz-border-radius: 40px 40px 40px 40px;
+  border: 6px double rgba(255,255,255,0);
+}
+
+.logo-container {
+  position: relative;
+  display: inline-block; /* Permite que los contenedores se alineen en una fila */
+  transition: background-color 0.2s, box-shadow 0.2s; /* Animación para el hover */
+}
+
+
+
+.logo-container:hover .logo1 {
+  transform: scale(1.5);
+  box-shadow: 3px 8px 42px 28px rgb(140, 135, 135); /* Sombra en la imagen */
+  -webkit-box-shadow: 3px 8px 42px 28px rgb(136, 128, 128);
+  -moz-box-shadow: 3px 8px 42px 28px rgb(156, 138, 138);
+  border-radius: 40px 40px 40px 40px;
+  -webkit-border-radius: 40px 40px 40px 40px;
+  -moz-border-radius: 40px 40px 40px 40px;
+  border: 6px double #000000;
+}
+
+.hoverinfo {
+  position: absolute;
+  top: 100%; /* Posiciona el pop-up abajo de la imagen */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+  padding: 10px;
+  border-radius: 5px;
+  display: none; /* Oculta el pop-up por defecto */
+  z-index: 10; /* Asegura que el pop-up esté por encima de otros elementos */
+  max-width: 90vw; /* Limita el ancho máximo del pop-up */
+  white-space: nowrap; /* Mantiene el texto en una sola línea por defecto */
+}
+
+.logo-container:hover .hoverinfo {
+  display: block; /* Muestra el pop-up al hacer hover */
+}
+
+.hoverinfo h2 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.hoverinfo p {
+  margin: 0;
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .hoverinfo {
+    white-space: normal; /* Permite que el texto se divida en varias líneas en pantallas pequeñas */
+    overflow-wrap: break-word; /* Permite que las palabras largas se dividan en varias líneas */
+  }
+}
+
+/* Evitar que el pop-up se desborde a la izquierda o derecha */
+.logo-container:hover .hoverinfo {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo-container:hover .hoverinfo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid rgba(0, 0, 0, 0.7); /* Flecha del pop-up */
+  transform: translateX(-50%);
+}
+
+@media (max-width: 400px) {
+  .hoverinfo {
+    left: 0;
+    transform: none;
+    max-width: 100vw;
+  }
+}

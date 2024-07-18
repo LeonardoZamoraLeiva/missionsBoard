@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
       description:
         "Un grupo de personas que se toman la justicia en sus manos para intentar hacer del borde exterior un lugar mejor.",
       alignment: "Lawful/Neutral",
-      imageUrl: "assets/img/outerRimSecurity.jpg",
+      imageUrl: "assets/img/outerRim_police.png",
     },
     {
       name: "Merchant Syndicate",
@@ -1335,9 +1335,41 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
-  const associationsContainer = document.getElementById(
-    "associations-container"
-  );
+  const associationsLogos = document.getElementById("associations-logos");
+
+  associations.forEach((association) => {
+    const logoContainer = document.createElement("div");
+    logoContainer.classList.add("logo-container");
+  
+    const imgElement = document.createElement("img");
+    imgElement.src = association.imageUrl;
+    imgElement.alt = `${association.name} Logo`;
+    imgElement.classList.add("logo1");
+    imgElement.setAttribute("title", association.name);
+    imgElement.setAttribute("data-content", association.description);
+  
+    const hoverInfo = document.createElement("div");
+    hoverInfo.classList.add("hoverinfo");
+  
+    const nameElement = document.createElement("h2");
+    nameElement.textContent = association.name;
+  
+    // const descriptionElement = document.createElement("p");
+    // descriptionElement.textContent = association.description;
+  
+    hoverInfo.appendChild(nameElement);
+    // hoverInfo.appendChild(descriptionElement);
+    logoContainer.appendChild(imgElement);
+    logoContainer.appendChild(hoverInfo);
+  
+    associationsLogos.appendChild(logoContainer);
+  });
+  
+  
+  
+const associationsContainer = document.getElementById(
+  "associations-container"
+);
 
   associations.forEach((association) => {
     const associationElement = document.createElement("div");
