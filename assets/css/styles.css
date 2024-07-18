@@ -226,11 +226,16 @@ body {
   /* padding-left: 15%; */
   /* padding-right: 20%; */
 
-  .center {
-    border: 5px solid;
-    position: absolute;
-    /* top: 50%; */
-    /* left: 50%; */
-    /* transform: tr  anslate(-50%, -50%); */
-    padding: 10px;
+  .boardFinal{
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Por defecto, centrar contenido */
   }
+  
+  /* Estilo para pantallas pequeñas (menos de 470 píxeles) */
+  @media (max-width: 470px) {
+    .row {
+      justify-content: space-between; /* Cambiar a space-between en pantallas pequeñas */
+    }
+  }
+
